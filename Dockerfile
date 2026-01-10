@@ -38,4 +38,10 @@ RUN apt-get update && \
 # Copy application code
 COPY --from=builder --chown=app:app /app /app
 ENV PATH="/app/.venv/bin:$PATH"
+
+# Create OpenVPN config directory and copy config files
+# (can be overridden by volume mount in docker-compose)
+RUN mkdir -p /etc/openvpn
+COPY --from=builder /app/src/dooverworx_gateway/openvpn/ /etc/openvpn/
+
 CMD ["doover-app-run"]
