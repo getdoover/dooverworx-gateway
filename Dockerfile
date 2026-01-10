@@ -23,27 +23,14 @@ COPY . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-dev
 
-## OPENVPN STAGE ##
-FROM kylemanna/openvpn:latest AS openvpn_source
-
-## OPENVPN LIBS STAGE ##
-FROM openvpn_source AS openvpn_libs
-RUN mkdir -p /tmp/libs && \
-    ldd /usr/sbin/openvpn 2>/dev/null | awk '/=>/ {print $3}' | grep -v '^$' | while read lib; do \
-      if [ -f "$lib" ]; then \
-        libdir=$(dirname "$lib"); \
-        mkdir -p "/tmp/libs$libdir"; \
-        cp "$lib" "/tmp/libs$lib"; \
-      fi; \
-    done || true
-
 ## SECOND STAGE ##
 FROM base_image AS final_image
 
-# Copy OpenVPN binary
-COPY --from=openvpn_source /usr/sbin/openvpn /usr/sbin/openvpn
-# Copy OpenVPN required libraries
-COPY --from=openvpn_libs /tmp/libs/ /
+# Install OpenVPN (works for both amd64 and arm64)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends openvpn && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy application code
 COPY --from=builder --chown=app:app /app /app
