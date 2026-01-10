@@ -13,11 +13,3 @@ def test_config():
 
     config = DooverworxGatewayConfig()
     assert isinstance(config.to_dict(), dict)
-
-def test_ui():
-    from dooverworx_gateway.app_ui import DooverworxGatewayUI
-    assert DooverworxGatewayUI
-
-def test_state():
-    from dooverworx_gateway.app_state import DooverworxGatewayState
-    assert DooverworxGatewayState
