@@ -14,7 +14,7 @@ class DooverworxGatewayApplication(Application):
         super().__init__(*args, **kwargs)
         self.started: float = time.time()
 
-        self.loop_target_period = None
+        # self.loop_target_period = None
 
     async def setup(self):
         """Start the entrypoint.sh script with configuration."""
