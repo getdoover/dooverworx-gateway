@@ -1,16 +1,16 @@
 {
-    "sample_application": {
-        "key": "32134bbb-5278-43c0-a6ca-4046a5edeb9f",
-        "name": "sample_application",
-        "display_name": "Sample Application",
+    "dooverworx_gateway": {
+        "name": "dooverworx_gateway",
+        "display_name": "DooverWorx Gateway",
+        "key": "41983c59-a0e8-4fda-ad9e-fbc987ed5a6b",
         "type": "DEV",
         "visibility": "PUB",
         "allow_many": true,
-        "description": "A template application for Doover",
+        "description": "Doover App to provide DooverWorx powered network connectivity to a remote client",
         "long_description": "README.md",
         "depends_on": [],
         "owner_org_key": "",
-        "image_name": "ghcr.io/getdoover/app_template",
+        "image_name": "ghcr.io/getdoover/dooverworx-gateway:main",
         "container_registry_profile_key": "",
         "build_args": "--platform linux/amd64,linux/arm64",
         "config_schema": {
@@ -19,33 +19,28 @@
             "title": "Application Config",
             "type": "object",
             "properties": {
-                "digital_outputs_enabled": {
-                    "title": "Digital Outputs Enabled",
-                    "x-name": "digital_outputs_enabled",
-                    "x-hidden": false,
-                    "type": "boolean",
-                    "default": true
-                },
-                "a_funny_message": {
-                    "title": "A Funny Message",
-                    "x-name": "a_funny_message",
-                    "x-hidden": false,
-                    "type": "string"
-                },
-                "simulator_app_key": {
-                    "format": "doover-application",
-                    "title": "Simulator App Key",
-                    "x-name": "simulator_app_key",
+                "target_interface": {
+                    "title": "Target Interface",
+                    "x-name": "target_interface",
                     "x-hidden": false,
                     "type": "string",
-                    "description": "The app key for the simulator"
+                    "description": "The interface to attach to. Can be a bridge or a normal interface. e.g. br0 or eth0.",
+                    "default": "eth0"
+                },
+                "openvpn_port": {
+                    "title": "OpenVPN Port",
+                    "x-name": "openvpn_port",
+                    "x-hidden": false,
+                    "type": "integer",
+                    "description": "The port the server will listen on.",
+                    "default": 1194
                 }
             },
             "additionalElements": true,
-            "required": [
-                "a_funny_message",
-                "simulator_app_key"
-            ]
-        }
+            "required": []
+        },
+        "organisation_id": "36a22e32-ab81-4a39-b400-869d532a052d",
+        "owner_org": "36a22e32-ab81-4a39-b400-869d532a052d",
+        "container_registry_profile": "88953909-e9c4-4f81-9ec0-56239d4b0a2e"
     }
 }
