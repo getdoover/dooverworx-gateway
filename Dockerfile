@@ -26,9 +26,12 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 ## SECOND STAGE ##
 FROM base_image AS final_image
 
-# Install OpenVPN (works for both amd64 and arm64)
+# Install OpenVPN and networking tools (works for both amd64 and arm64)
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends openvpn && \
+    apt-get install -y --no-install-recommends \
+        openvpn \
+        iproute2 \
+        bridge-utils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
