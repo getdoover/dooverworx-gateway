@@ -1,7 +1,7 @@
 services:
   dooverworx-gateway:
     #image: kylemanna/openvpn:latest
-    image: ghcr.io/getdoover/dooverworx-gateway:main
+    image: ghcr.io/getdoover/dooverworx-gateway:dv1
     network_mode: host
     cap_add:
       - NET_ADMIN
