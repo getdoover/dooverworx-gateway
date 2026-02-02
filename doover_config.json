@@ -9,7 +9,7 @@
         "description": "Doover App to provide DooverWorx powered network connectivity to a remote client",
         "long_description": "README.md",
         "depends_on": [],
-        "owner_org_key": "",
+        "owner_org_key": "36a22e32-ab81-4a39-b400-869d532a052d",
         "image_name": "ghcr.io/getdoover/dooverworx-gateway:main",
         "container_registry_profile_key": "",
         "build_args": "--platform linux/amd64,linux/arm64",
@@ -39,8 +39,17 @@
             "additionalElements": true,
             "required": []
         },
-        "organisation_id": "36a22e32-ab81-4a39-b400-869d532a052d",
-        "owner_org": "36a22e32-ab81-4a39-b400-869d532a052d",
-        "container_registry_profile": "88953909-e9c4-4f81-9ec0-56239d4b0a2e"
+        "container_registry_profile": "88953909-e9c4-4f81-9ec0-56239d4b0a2e",
+        "lambda_config": {},
+        "owner_org_id": null,
+        "container_registry_profile_id": "93955828574386692",
+        "id": "144015742600267277",
+        "organisation_id": null,
+        "code_repo_id": null,
+        "repo_branch": "main",
+        "staging_config": {},
+        "export_config_command": null,
+        "run_command": null,
+        "lambda_arn": null
     }
 }
